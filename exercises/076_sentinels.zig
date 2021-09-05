@@ -83,19 +83,19 @@ fn printSequence(my_seq: anytype) void {
             print("Array:", .{});
 
             // Loop through the items in my_seq.
-            for (???) |s| {
+            for (my_seq) |s| {
                 print("{}", .{s});
             }
         },
-        .Pointer => {
+        .Pointer => |ptr| {
             // Check this out - it's pretty cool:
-            const my_sentinel = my_type.Pointer.sentinel;
+            const my_sentinel = ptr.sentinel;
             print("Many-item pointer:", .{});
 
             // Loop through the items in my_seq until we hit the
             // sentinel value.
             var i: usize = 0;
-            while (??? != my_sentinel) {
+            while (my_seq[i] != my_sentinel) {
                 print("{}", .{my_seq[i]});
                 i += 1;
             }
